@@ -1,4 +1,4 @@
-node('node-web'){
+node{
       
     def mavenHome = tool name: "Maven 3.8.6"
     
