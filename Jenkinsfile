@@ -1,9 +1,5 @@
 node('node-web'){
-    
-   properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], 
-   
-   pipelineTriggers([pollSCM('* * * * *')])])
-    
+      
     def mavenHome = tool name: "Maven 3.8.6"
     
  stage('code pulling'){
