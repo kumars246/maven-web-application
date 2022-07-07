@@ -99,7 +99,7 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Facebook release</name>
-	      <url>http://13.233.136.100:8081/repository/Facebook-release/</url>
+	      <url>http://13.233.136.100:8081/repository/Facebook-Release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
