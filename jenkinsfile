@@ -1,0 +1,25 @@
+node {
+
+def MavenHome = tool name: "Maven 3.8.6"
+    
+stage('Getting the clode from git hub') {
+            git branch: 'development', credentialsId: 'a939eaf6-abc1-4a94-8343-a222340f14ec', url: 'https://github.com/kumars246/maven-web-application.git'
+    }
+stage('Building packages') {
+            sh "${MavenHome}/bin/mvn clean package"
+    }
+
+stage('Uploading to sonarqube') {
+            sh "${MavenHome}/bin/mvn sonar:sonar"
+    }
+stage('Uploading to nexus') {
+            sh "${MavenHome}/bin/mvn deploy"
+    }
+    
+stage('Uploading to tomcat') {
+sshagent(['76a22b40-881c-4f57-ae41-38d37d34de9f']) {
+ sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@65.1.1.109:/opt/apache-tomcat-9.0.64/webapps"
+}
+}
+
+}// node closing
